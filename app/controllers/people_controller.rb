@@ -27,6 +27,7 @@ class PeopleController < ApplicationController
       if @person.save
         format.html { redirect_to person_url(@person), notice: "Person was successfully created." }
         format.json { render :show, status: :created, location: @person }
+        format.turbo_stream { flash.now[:notice] = "Person was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }

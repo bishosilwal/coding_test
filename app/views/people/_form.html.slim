@@ -1,5 +1,5 @@
 = turbo_frame_tag :personal_data_form, class: 'flex w-full'
-  = form_with model: person , class: 'w-full' do |form|
+  = form_with model: person , class: 'w-full', data: { action: 'turbo:submit-end->person-employment#personCreated' } do |form|
     - if @person.errors.any?
       div style="color: red"
         h2 = "#{pluralize(person.errors.count, "error")} prohibited this person from being saved:"

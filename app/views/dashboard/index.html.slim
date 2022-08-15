@@ -1,10 +1,10 @@
-.flex.justify-center.w-full
+.flex.justify-center.w-full data={ controller: 'person-employment' }
   .px-5
     <!-- The button to open modal -->
     label.btn.btn-primary.capitalize for="personal-data" Personal Data
 
     <!-- Put this part before </body> tag -->
-    input.modal-toggle#personal-data type="checkbox"
+    input.modal-toggle#personal-data data-person-employment-target="personForm" type="checkbox"
     label.modal.cursor-pointer for="personal-data"
         label.modal-box.relative
             label.btn.btn-sm.btn-circle.absolute.right-2.top-2 for="personal-data" x
@@ -16,7 +16,7 @@
     label.btn.btn-primary.capitalize for="employment" Employment
 
     <!-- Put this part before </body> tag -->
-    input.modal-toggle#employment type="checkbox"
+    input.modal-toggle#employment data-person-employment-target="employmentForm" type="checkbox"
     label.modal.cursor-pointer  for="employment"
         label.modal-box.relative
             label.btn.btn-sm.btn-circle.absolute.right-2.top-2 for="employment" x
