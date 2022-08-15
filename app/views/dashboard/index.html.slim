@@ -5,21 +5,20 @@
 
     <!-- Put this part before </body> tag -->
     input.modal-toggle#personal-data type="checkbox"
-    .modal
-        .modal-box.relative
+    label.modal.cursor-pointer for="personal-data"
+        label.modal-box.relative
             label.btn.btn-sm.btn-circle.absolute.right-2.top-2 for="personal-data" x
             h3.font-bold.text-lg.capitalize Personal Data Form
-            p.py-4
-                |
-                You've been selected for a chance to get one year of subscription to use Wikipedia for free!
+            .flex.py-4
+                == render 'people/form', person: @person
   .px-5
     <!-- The button to open modal -->
     label.btn.btn-primary.capitalize for="employment" Employment
 
     <!-- Put this part before </body> tag -->
     input.modal-toggle#employment type="checkbox"
-    .modal
-        .modal-box.relative
+    label.modal.cursor-pointer  for="employment"
+        label.modal-box.relative
             label.btn.btn-sm.btn-circle.absolute.right-2.top-2 for="employment" x
             h3.font-bold.text-lg.capitalize Employment Form
             p.py-4

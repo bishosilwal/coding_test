@@ -1,11 +1,9 @@
-p style="color: green" = notice
-
-h1 People
-
-#people
-  - @people.each do |person|
-    == render person
-    p
-      = link_to "Show this person", person
-
-= link_to "New person", new_person_path
+.container
+  p style="color: green" = notice
+  h1 People
+  = link_to "New person", new_person_path, class: 'link'
+  #people.flex.flex-col
+    - @people.each do |person|
+      .flex.justify-around.py-3
+        = person.email
+        = link_to "Show this person", person, class: 'btn btn-primary'

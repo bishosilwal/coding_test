@@ -1,30 +1,32 @@
-= form_with(model: @person) do |form|
-  - if @person.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(@person.errors.count, "error")} prohibited this person from being saved:"
-      ul
-        - @person.errors.each do |error|
-          li = error.full_message
+= turbo_frame_tag :personal_data_form, class: 'flex w-full'
+  = form_with model: person , class: 'w-full' do |form|
+    - if @person.errors.any?
+      div style="color: red"
+        h2 = "#{pluralize(person.errors.count, "error")} prohibited this person from being saved:"
+        ul
+          - person.errors.each do |error|
+            li = error.full_message
 
-  div
-    = form.label :first_name, style: "display: block"
-    = form.text_field :first_name
+    .form-control.w-full
+      = form.label :first_name, class: 'label'
+      = form.text_field :first_name, class: 'input input-border input-primary w-full'
 
-  div
-    = form.label :last_name, style: "display: block"
-    = form.text_field :last_name
+    .form-control
+      = form.label :last_name, class: 'label'
+      = form.text_field :last_name, class: 'input input-border input-primary w-full'
 
-  div
-    = form.label :nickname, style: "display: block"
-    = form.text_field :nickname
+    .form-control
+      = form.label :nickname, class: 'label'
+      = form.text_field :nickname, class: 'input input-border input-primary w-full'
 
-  div
-    = form.label :email, style: "display: block"
-    = form.text_field :email
+    .form-control
+      = form.label :email, class: 'label'
+      = form.text_field :email, class: 'input input-border input-primary w-full'
 
-  div
-    = form.label :phone, style: "display: block"
-    = form.text_field :phone
+    .form-control
+      = form.label :phone, class: 'label'
+      = form.text_field :phone, class: 'input input-border input-primary w-full'
 
-  div
-    = form.submit
+    .flex.justify-end.pt-5
+      label.btn.btn-secondar.mx-4 for="personal-data" Cancel
+      = form.submit 'Save', class: 'btn btn-primary'
