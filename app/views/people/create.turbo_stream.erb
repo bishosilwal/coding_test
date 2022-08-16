@@ -1,2 +1,2 @@
-<%= turbo_stream.replace :personal_data_form, partial: 'people/form', locals: { person: Person.new } %>
+<%= turbo_stream.replace :personal_data_form, partial: 'people/form', locals: { person: @person } %>
 <%= turbo_stream.prepend "flash", partial: "layouts/flash" %>
