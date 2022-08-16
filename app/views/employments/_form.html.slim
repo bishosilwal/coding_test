@@ -1,5 +1,5 @@
 = turbo_frame_tag :employment_data_form, class: 'flex w-full'
-  = form_with model: employment, data: { action: 'turbo:submit-end->person-employment#employmentCreated'} , class: 'w-full' do |form|
+  = form_with model: employment, data: { action: 'turbo:submit-end->person-employment#employmentCreated', controller: 'employment'} , class: 'w-full' do |form|
     .form-control.w-full.hidden
       = form.label :employer, class: 'label'
       = form.text_field :person_id, class: "input input-border w-full #{employment.errors[:person_id].present? ? 'input-error' : 'input-primary'}"
@@ -8,16 +8,16 @@
           = employment.errors[:first_name].first
     .form-control
       = form.label :date_started, class: 'label'
-      = form.date_field :date_started, class: "input input-border w-full #{employment.errors[:date_started].present? ? 'input-error' : 'input-primary'}"
+      = form.date_field :date_started, class: "input input-border w-full #{employment.errors[:date_started].present? ? 'input-error' : 'input-primary'}", required: true, data: { action: 'change->employment#validate' }
       label.label
         span.label-text-alt.text-rose-500
           = employment.errors[:date_started].first
     .form-control
       = form.label :employment_date_ended, class: 'label'
-      = form.date_field :employment_date_ended, class: "input input-border w-full #{employment.errors[:employment_date_ended].present? ? 'input-error' : 'input-primary'}"
+      = form.date_field :employment_date_ended, class: "input input-border w-full #{employment.errors[:employment_date_ended].present? ? 'input-error' : 'input-primary'}", required: true, data: { action: 'change->employment#validate' }
       label.label
         span.label-text-alt.text-rose-500
           = employment.errors[:employment_date_ended].first
     .flex.justify-end.pt-5
       label.btn.btn-secondar.mx-4 for="employment" Cancel
-      = form.submit 'Save', class: 'btn btn-primary'
+      = form.submit 'Save', class: 'btn btn-primary btn-disabled'

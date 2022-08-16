@@ -5,15 +5,26 @@ export default class extends Controller {
     console.log('person controller connected')
   }
 
+  validate(e, paramsValid = true) {
+    const phoneValid = !this.element.querySelector('#person_phone').classList.contains("input-error");
+    if (this.element.checkValidity() && paramsValid && phoneValid) {
+      this.element.querySelector('[type="submit"]').classList.remove('btn-disabled')
+    } else {
+      this.element
+        .querySelector('[type="submit"]')
+        .classList.add("btn-disabled");
+    }
+  }
+
   phoneChanged(e) {
     const targetClasses = e.target.classList
     let errorEl = e.target.parentElement.querySelector(".label-text-alt")
-    if (e.key.length == 1 && !e.key.match("\\d")) {
+    if (e.key?.length == 1 && !e.key.match("\\d")) {
       e.target.value = e.target.value.slice(0, -1)
       e.preventDefault()
       return;
     }
-    if (e.key.length == 1 && e.key.match("\\d")) {
+    if (e.key?.length == 1 && e.key.match("\\d")) {
       this.formatPhoneNum(e.target);
     }
     if (e.target.value.length >= 12) {
@@ -25,6 +36,7 @@ export default class extends Controller {
     } else {
       targetClasses.remove("input-primary");
       targetClasses.add("input-error");
+      this.validate(e, false);
       if (errorEl) {
         errorEl.innerHTML = "invalid phone number";
       }

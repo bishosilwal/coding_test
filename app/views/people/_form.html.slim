@@ -2,34 +2,34 @@
   = form_with model: person , class: 'w-full', data: { action: 'turbo:submit-end->person-employment#personCreated', controller: 'person' } do |form|
     .form-control.w-full
       = form.label :first_name, class: 'label'
-      = form.text_field :first_name, class: "input input-border w-full #{person.errors[:first_name].present? ? 'input-error' : 'input-primary'}"
+      = form.text_field :first_name, class: "input input-border w-full #{person.errors[:first_name].present? ? 'input-error' : 'input-primary'}", data: { action: 'change->person#validate' }, required: true
       label.label
         span.label-text-alt.text-rose-500
           = person.errors[:first_name].first
     .form-control
       = form.label :last_name, class: 'label'
-      = form.text_field :last_name, class: "input input-border w-full #{person.errors[:last_name].present? ? 'input-error' : 'input-primary'}"
+      = form.text_field :last_name, class: "input input-border w-full #{person.errors[:last_name].present? ? 'input-error' : 'input-primary'}", data: { action: 'change->person#validate' }, required: true
       label.label
         span.label-text-alt.text-rose-500
           = person.errors[:last_name].first
     .form-control
       = form.label :nickname, class: 'label'
-      = form.text_field :nickname, class:  "input input-border w-full #{person.errors[:nick_name].present? ? 'input-error' : 'input-primary'}"
+      = form.text_field :nickname, class:  "input input-border w-full #{person.errors[:nick_name].present? ? 'input-error' : 'input-primary'}", data: { action: 'change->person#validate' }
       label.label
         span.label-text-alt.text-rose-500
           = person.errors[:nickname].first
     .form-control
       = form.label :email, class: 'label'
-      = form.text_field :email, class:  "input input-border w-full #{person.errors[:email].present? ? 'input-error' : 'input-primary'}"
+      = form.text_field :email, class:  "input input-border w-full #{person.errors[:email].present? ? 'input-error' : 'input-primary'}", data: { action: 'change->person#validate' }, required: true
       label.label
         span.label-text-alt.text-rose-500
           = person.errors[:email].first
     .form-control
       = form.label :phone, class: 'label'
-      = form.telephone_field :phone, value: number_to_phone(person.phone), class:  "input input-border w-full #{person.errors[:phone].present? ? 'input-error' : 'input-primary'}", data: { action: 'keyup->person#phoneChanged' }
+      = form.telephone_field :phone, value: number_to_phone(person.phone), class:  "input input-border w-full #{person.errors[:phone].present? ? 'input-error' : 'input-primary'}", data: { action: 'keyup->person#phoneChanged change->person#validate' }, required: true, autoComplete: 'none'
       label.label
         span.label-text-alt.text-rose-500
           = person.errors[:phone].first
     .flex.justify-end.pt-5
       label.btn.btn-secondar.mx-4 for="personal-data" Cancel
-      = form.submit 'Save', class: 'btn btn-primary'
+      = form.submit 'Save', class: 'btn btn-primary btn-disabled'
