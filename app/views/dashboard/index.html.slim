@@ -13,7 +13,7 @@
                 == render 'people/form', person: @person
   .px-5
     <!-- The button to open modal -->
-    label.btn.btn-primary.capitalize for="employment" Employment
+    label.btn.btn-primary.capitalize.btn-disabled for="employment" Employment
 
     <!-- Put this part before </body> tag -->
     input.modal-toggle#employment data-person-employment-target="employmentForm" type="checkbox"
@@ -21,6 +21,5 @@
         label.modal-box.relative
             label.btn.btn-sm.btn-circle.absolute.right-2.top-2 for="employment" x
             h3.font-bold.text-lg.capitalize Employment Form
-            p.py-4
-                |
-                You've been selected for a chance to get one year of subscription to use Wikipedia for free!
+            flex.py-4
+                == render 'employments/form', employment: @employment

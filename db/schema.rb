@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_14_112813) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_063646) do
+  create_table "employments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.date "date_started"
+    t.date "employment_date_ended"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_employments_on_person_id"
+  end
+
   create_table "people", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -21,4 +30,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_112813) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "employments", "people"
 end

@@ -7,6 +7,7 @@ export default class extends Controller {
 
   phoneChanged(e) {
     const targetClasses = e.target.classList
+    let errorEl = e.target.parentElement.querySelector(".label-text-alt")
     if (e.key.length == 1 && !e.key.match("\\d")) {
       e.target.value = e.target.value.slice(0, -1)
       e.preventDefault()
@@ -18,12 +19,15 @@ export default class extends Controller {
     if (e.target.value.length >= 12) {
       targetClasses.remove("input-error");
       targetClasses.add("input-primary");
-      e.target.parentElement.querySelector("label span").innerHTML = "";
+      if (errorEl) {
+        errorEl.innerHTML = "";
+      }
     } else {
       targetClasses.remove("input-primary");
       targetClasses.add("input-error");
-      e.target.parentElement.querySelector(".label-text-alt").innerHTML =
-        "invalid phone number";
+      if (errorEl) {
+        errorEl.innerHTML = "invalid phone number";
+      }
     }
   }
 

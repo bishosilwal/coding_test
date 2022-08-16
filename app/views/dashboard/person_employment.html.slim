@@ -1,0 +1,17 @@
+.container.overflow-x-auto
+  h2.font-xl.font-bold.mb-5 Employments List
+  table.table.table-zebra.w-full
+    thead
+      tr
+        th Date Started
+        th Employment Date Ended
+        th Employer
+    tbody
+      - @employments.each do |employment|
+        tr
+          td
+            = employment.date_started
+          td
+            = employment.employment_date_ended
+          td
+            = employment.employer.first_name + ' ' + employment.employer.last_name
